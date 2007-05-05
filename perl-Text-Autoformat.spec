@@ -1,6 +1,6 @@
 %define module	Text-Autoformat
 %define version	1.13
-%define release	%mkrel 2
+%define release	%mkrel 3
 
 Name:		perl-%{module}
 Version:	%{version}
@@ -30,7 +30,6 @@ The  module  also  supplies  a   re-entrant,   highly   configurable
 replacement for the built-in Perl format() mechanism.
 
 %prep
-
 %setup -q -n %{module}-%{version}
 bzcat %{SOURCE1} > dot-vimrc
 bzcat %{SOURCE2} > dot-emacs
@@ -40,6 +39,8 @@ bzcat %{SOURCE2} > dot-emacs
 
 CFLAGS="$RPM_OPT_FLAGS" %{__perl} Makefile.PL INSTALLDIRS=vendor
 make
+
+%check
 make test
 
 
@@ -54,15 +55,11 @@ install -d $RPM_BUILD_ROOT/$installarchlib
 
 install -d $RPM_BUILD_ROOT/%{_datadir}
 
-
 %clean
 rm -rf $RPM_BUILD_ROOT
-
 
 %files
 %defattr(-,root,root)
 %doc README Changes dot-vimrc dot-emacs
 %{perl_vendorlib}/Text/*
 %{_mandir}/*/*
-
-
