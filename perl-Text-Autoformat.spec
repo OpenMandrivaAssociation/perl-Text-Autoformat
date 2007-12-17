@@ -14,7 +14,6 @@ Source1:	dot-vimrc.bz2
 Source2:	dot-emacs.bz2
 BuildRequires:	perl-devel perl-Text-Reform
 Requires:       perl-Text-Reform
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 BuildArch:	noarch
 
 %description
