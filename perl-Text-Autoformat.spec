@@ -1,21 +1,21 @@
 %define module	Text-Autoformat
-%define version	1.13
-%define release	%mkrel 6
+%define version	1.14.0
+%define release	%mkrel 1
 
 Name:		perl-%{module}
 Version:	%{version}
 Release:	%{release}
-Summary:	%{module} module for perl
+Summary:	Automatic text wrapping and reformatting
 License:	Artistic
-Group:		Text tools
-URL:		ftp://ftp.perl.org/pub/CPAN/modules/by-module/Text
-Source0:	ftp://ftp.perl.org/pub/CPAN/modules/by-module/Text/%{module}-%{version}.tar.bz2
+Group:      Development/Perl
+Url:        http://search.cpan.org/dist/%{module}
+Source:     http://www.cpan.org/modules/by-module/Text/%{module}-v%{version}.tar.gz
 Source1:	dot-vimrc.bz2
 Source2:	dot-emacs.bz2
-BuildRequires:	perl-devel perl-Text-Reform
+BuildRequires:	perl-Text-Reform
 Requires:       perl-Text-Reform
-BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 BuildArch:	noarch
+BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 Text::Autoformat  provides  intelligent  formatting   of   plaintext
@@ -30,7 +30,7 @@ The  module  also  supplies  a   re-entrant,   highly   configurable
 replacement for the built-in Perl format() mechanism.
 
 %prep
-%setup -q -n %{module}-%{version}
+%setup -q -n %{module}-v%{version}
 bzcat %{SOURCE1} > dot-vimrc
 bzcat %{SOURCE2} > dot-emacs
 
