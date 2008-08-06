@@ -1,6 +1,6 @@
 %define module	Text-Autoformat
 %define version	1.14.0
-%define release	%mkrel 1
+%define release	%mkrel 2
 
 Name:		perl-%{module}
 Version:	%{version}
