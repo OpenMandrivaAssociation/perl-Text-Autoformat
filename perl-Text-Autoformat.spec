@@ -1,6 +1,6 @@
 %define module	Text-Autoformat
-%define version	1.14.0
-%define release	%mkrel 2
+%define version 1.666.0
+%define release	%mkrel 1
 
 Name:		perl-%{module}
 Version:	%{version}
@@ -9,7 +9,7 @@ Summary:	Automatic text wrapping and reformatting
 License:	Artistic
 Group:      Development/Perl
 Url:        http://search.cpan.org/dist/%{module}
-Source:     http://www.cpan.org/modules/by-module/Text/%{module}-v%{version}.tar.gz
+Source:     http://www.cpan.org/modules/by-module/Text/%{module}-%{version}.tar.gz
 Source1:	dot-vimrc.bz2
 Source2:	dot-emacs.bz2
 BuildRequires:	perl-Text-Reform
@@ -30,34 +30,26 @@ The  module  also  supplies  a   re-entrant,   highly   configurable
 replacement for the built-in Perl format() mechanism.
 
 %prep
-%setup -q -n %{module}-v%{version}
+%setup -q -n %{module}-%{version}
 bzcat %{SOURCE1} > dot-vimrc
 bzcat %{SOURCE2} > dot-emacs
 
 %build
-
-CFLAGS="$RPM_OPT_FLAGS" %{__perl} Makefile.PL INSTALLDIRS=vendor
+%{__perl} Makefile.PL INSTALLDIRS=vendor
 make
 
 %check
 make test
 
 %install
-rm -rf $RPM_BUILD_ROOT
-
-eval `perl '-V:installarchlib'`
-install -d $RPM_BUILD_ROOT/$installarchlib
-
-#{__make} PREFIX=$RPM_BUILD_ROOT%{_prefix} install
+rm -rf %{buildroot}
 %makeinstall_std
 
-install -d $RPM_BUILD_ROOT/%{_datadir}
-
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
 %doc README Changes dot-vimrc dot-emacs
-%{perl_vendorlib}/Text/*
+%{perl_vendorlib}/Text
 %{_mandir}/*/*
