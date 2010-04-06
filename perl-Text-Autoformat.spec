@@ -1,19 +1,20 @@
-%define module	Text-Autoformat
-%define version 1.666.0
-%define release	%mkrel 1
+%define upstream_name	 Text-Autoformat
+%define upstream_version 1.668001
 
-Name:		perl-%{module}
-Version:	%{version}
-Release:	%{release}
+Name:       perl-%{upstream_name}
+Version:    %perl_convert_version %{upstream_version}
+Release:    %mkrel 1
+
 Summary:	Automatic text wrapping and reformatting
 License:	Artistic
 Group:      Development/Perl
-Url:        http://search.cpan.org/dist/%{module}
-Source:     http://www.cpan.org/modules/by-module/Text/%{module}-%{version}.tar.gz
+Url:        http://search.cpan.org/dist/%{upstream_name}
+Source0:    http://www.cpan.org/modules/by-module/Text/%{upstream_name}-%{upstream_version}.tar.gz
 Source1:	dot-vimrc.bz2
 Source2:	dot-emacs.bz2
-BuildRequires:	perl-Text-Reform
-Requires:       perl-Text-Reform
+
+BuildRequires:	perl(Text::Reform)
+
 BuildArch:	noarch
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
@@ -30,16 +31,16 @@ The  module  also  supplies  a   re-entrant,   highly   configurable
 replacement for the built-in Perl format() mechanism.
 
 %prep
-%setup -q -n %{module}-%{version}
+%setup -q -n %{upstream_name}-%{upstream_version}
 bzcat %{SOURCE1} > dot-vimrc
 bzcat %{SOURCE2} > dot-emacs
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
-make
+%make
 
 %check
-make test
+%make test
 
 %install
 rm -rf %{buildroot}
@@ -50,6 +51,6 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc README Changes dot-vimrc dot-emacs
+%doc README Changes dot-vimrc dot-emacs META.yml
 %{perl_vendorlib}/Text
 %{_mandir}/*/*
