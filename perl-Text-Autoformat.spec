@@ -1,5 +1,5 @@
 %define upstream_name	 Text-Autoformat
-%define upstream_version 1.668001
+%define upstream_version 1.669002
 
 Name:       perl-%{upstream_name}
 Version:    %perl_convert_version %{upstream_version}
