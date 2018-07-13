@@ -12,6 +12,7 @@ Source0:	http://www.cpan.org/modules/by-module/Text/%{modname}-%{modver}.tar.gz
 Source1:	dot-vimrc.bz2
 Source2:	dot-emacs.bz2
 BuildArch:	noarch
+BuildRequires:	perl(Test::More)
 BuildRequires:	perl-devel
 BuildRequires:	perl(Text::Reform)
 
