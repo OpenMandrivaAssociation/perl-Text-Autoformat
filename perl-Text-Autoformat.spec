@@ -4,10 +4,10 @@
 Summary:	Automatic text wrapping and reformatting
 Name:		perl-%{modname}
 Version:	%perl_convert_version %{modver}
-Release:	3
+Release:	4
 License:	Artistic
 Group:		Development/Perl
-Url:		http://search.cpan.org/dist/%{modname}
+Url:		http://metacpan.org/pod/Text::Autoformat
 Source0:	http://www.cpan.org/modules/by-module/Text/%{modname}-%{modver}.tar.gz
 Source1:	dot-vimrc.bz2
 Source2:	dot-emacs.bz2
