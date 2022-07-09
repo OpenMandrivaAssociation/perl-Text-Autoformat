@@ -1,10 +1,10 @@
 %define modname	Text-Autoformat
-%define modver	1.74
+%define modver	1.75
 
 Summary:	Automatic text wrapping and reformatting
 Name:		perl-%{modname}
 Version:	%perl_convert_version %{modver}
-Release:	4
+Release:	1
 License:	Artistic
 Group:		Development/Perl
 Url:		http://metacpan.org/pod/Text::Autoformat
