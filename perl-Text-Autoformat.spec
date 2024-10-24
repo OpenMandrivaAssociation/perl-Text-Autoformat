@@ -1,14 +1,13 @@
 %define modname	Text-Autoformat
-%define modver	1.75
 
 Summary:	Automatic text wrapping and reformatting
 Name:		perl-%{modname}
-Version:	%perl_convert_version %{modver}
-Release:	3
+Version:	1.75
+Release:	1
 License:	Artistic
 Group:		Development/Perl
 Url:		https://metacpan.org/pod/Text::Autoformat
-Source0:	http://www.cpan.org/modules/by-module/Text/%{modname}-%{modver}.tar.gz
+Source0:	http://www.cpan.org/modules/by-module/Text/%{modname}-%{version}.tar.gz
 Source1:	dot-vimrc.bz2
 Source2:	dot-emacs.bz2
 BuildArch:	noarch
@@ -29,22 +28,21 @@ The  module  also  supplies  a   re-entrant,   highly   configurable
 replacement for the built-in Perl format() mechanism.
 
 %prep
-%setup -qn %{modname}-%{modver}
+%autosetup -p1 -n %{modname}-%{version}
 bzcat %{SOURCE1} > dot-vimrc
 bzcat %{SOURCE2} > dot-emacs
 
 %build
-%__perl Makefile.PL INSTALLDIRS=vendor
-%make
+perl Makefile.PL INSTALLDIRS=vendor
+%make_build
 
 %check
 %make test
 
 %install
-%makeinstall_std
+%make_install
 
 %files
 %doc README Changes dot-vimrc dot-emacs META.yml
 %{perl_vendorlib}/Text
 %{_mandir}/man3/*
-
